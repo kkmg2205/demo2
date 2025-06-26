@@ -1,128 +1,84 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="./bootstrap-5.3.6-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./bootstrap-icons-1.13.1/bootstrap-icons.css">
-    <script src="./bootstrap-5.3.6-dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="./bootstrap-5.3.6-dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./bootstrap-icons-1.13.1/bootstrap-icons.css">
+  <script src="./bootstrap-5.3.6-dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    .chart-sm {
+      width: 100%;
+      height: 200px;
+    }
+  </style>
 </head>
 <body>
-    <div class="sidebar" style="width: 250px; height: 100vh; position: fixed;top: 0; left: 0; background-color: #222; color: #fff;padding: 20px; transition: all 0.3s;">
-        <div class="user-info d-flex align-items-center mb-4" >
-            <img src="./avt.png" alt="User Avatar" class="rounded-circle" style="margin-bottom: 20px; width: 40px;height: 40px;border-radius: 50%;margin-right: 10px;">
-            <div>
-                <div>Johnny Doo</div>
-                <small>@johnnydoo</small>
-            </div>
-        </div>
-        <nav class="nav flex-column">
-            <a class="nav-link active" href="#">Overview</a>
-            <a class="nav-link" href="#">Audience</a>
-            <a class="nav-link" href="#">Finances <span class="badge bg-secondary ms-2">11</span></a>
-            <a class="nav-link" href="#">Real time</a>
-            <a class="nav-link" href="#">Projects</a>
-        </nav>
+  <!-- Sidebar -->
+  <div class="sidebar" style="width: 250px; height: 100vh; position: fixed;top: 0; left: 0; background-color: #222; color: #fff;padding: 20px;">
+    <div class="user-info d-flex align-items-center mb-4">
+      <img src="./avt.png" alt="Ảnh đại diện của Johnny Doo" class="rounded-circle" style="margin-bottom: 20px; width: 40px;height: 40px;margin-right: 10px;">
+      <div>
+        <div>Johnny Doo</div>
+        <small>@johnnydoo</small>
+      </div>
     </div>
+    <nav class="nav flex-column">
+      <a class="nav-link active fw-bold text-white" href="#">Overview</a>
+      <a class="nav-link text-white" href="#">Audience</a>
+      <a class="nav-link text-white" href="#">Finances <span class="badge bg-secondary ms-2">11</span></a>
+      <a class="nav-link text-white" href="#">Real time</a>
+      <a class="nav-link text-white" href="#">Projects</a>
+    </nav>
+  </div>
 
-
-    <!-- Main Content -->
-    <div class="main-content" style="margin-left: 250px; padding: 20px;">
-        <nav class="navbar navbar-expand-lg bg-light mb-4">
-            <div class="container-fluid">
-                <!-- Toggle button for mobile (optional) -->
-                <button class="btn btn-dark d-md-none" id="sidebarToggle">
-                    <i class="bi bi-list"></i>
-                </button>
-                <!-- Search Bar -->
-                <form class="d-flex me-auto" role="search">
-                    <div class="input-group">
-                        <span class="input-group-text"><i class="bi bi-search"></i></span>
-                        <input class="form-control" type="search" placeholder="Tìm kiếm" aria-label="Search">
-                    </div>
-                </form>
-                <!-- Notification and User Avatar -->
-                <div class="d-flex align-items-center">
-                    <a href="#" class="nav-link me-3">
-                        <i class="bi bi-bell-fill"></i> <span class="badge bg-danger">1</span>
-                    </a>
-                    <a href="#" class="nav-link">
-                        <img src="./avt.png" alt="Avatar" class="rounded-circle" style="width: 40px;height: 40px;">
-                    </a>
-                </div>
-            </div>
-        </nav>
-
-        <!-- Example content (same as your image) -->
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card p-3">
-                    <h5>Overall analysis</h5>
-                    <div class="row text-center justify-content-center">
-                        <div class="col-auto" style="width: 200px;">
-                            <canvas id="chartRecurring" class="chart-sm"></canvas>
-                            <p>42%<br><small>recurring</small></p>
-                        </div>
-                        <div class="col-auto" style="width: 200px;"> 
-                            <canvas id="chartAware" class="chart-sm"></canvas>
-                            <p>87%<br><small>aware</small></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card p-3 mb-4">
-                    <h5>Quick stats</h5>
-                    <p>Today: 78</p>
-                    <p>This month: 459</p>
-                    <p>All time: 54k</p>
-                    <p>Bounce rate: 81.08%</p>
-                    <p>Session duration: 00:01:41</p>
-                    <p>New session: 63.86%</p>
-                </div>
-            </div>
-            <!-- Thêm các phần còn lại tương tự -->
+  <!-- Main Content -->
+  <div class="main-content" style="margin-left: 250px; padding: 20px;">
+    <nav class="navbar navbar-expand-lg bg-light mb-4">
+      <div class="container-fluid">
+        <button class="btn btn-dark d-md-none" id="sidebarToggle">
+          <i class="bi bi-list"></i>
+        </button>
+        <form class="d-flex me-auto" role="search">
+          <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-search"></i></span>
+            <input class="form-control" type="search" placeholder="Tìm kiếm" aria-label="Search">
+          </div>
+        </form>
+        <div class="d-flex align-items-center">
+          <a href="#" class="nav-link me-3">
+            <i class="bi bi-bell-fill"></i> <span class="badge bg-danger">1</span>
+          </a>
+          <a href="#" class="nav-link">
+            <img src="./avt.png" alt="Avatar" class="rounded-circle" style="width: 40px;height: 40px;">
+          </a>
         </div>
-    </div>
-    <script>
-        const drawDoughnut = (id, value) => {
-            new Chart(document.getElementById(id), {
-                type: 'doughnut',
-                data: {
-                labels: ['Value', 'Remaining'],
-                datasets: [{
-                    data: [value, 100 - value],
-                    backgroundColor: ['#6c5ce7', '#dfe6e9']
-                    }]
-                },
-            options: { cutout: '70%', // Makes it more like a donut
-                    maintainAspectRatio: false, // Allows custom size
-                    plugins: {
-                        legend: { display: false },
-                        tooltip: { enabled: false },
-                        // Plugin to add centered text
-                        beforeDraw: function(chart) {
-                            var width = chart.width,
-                                height = chart.height,
-                                ctx = chart.ctx;
-                            ctx.restore();
-                            var fontSize = (height / 114).toFixed(2);
-                            ctx.font = fontSize + "em sans-serif";
-                            ctx.textBaseline = "middle";
-                            var text = value + "%",
-                                textX = Math.round((width - ctx.measureText(text).width) / 2),
-                                textY = height / 2;
-                            ctx.fillStyle = '#000';
-                            ctx.fillText(text, textX, textY);
-                            ctx.save();
-                        }
-                    } }
-            });
-        };
-        drawDoughnut('chartRecurring', 42);
-        drawDoughnut('chartAware', 87);
-    </script>
-</body>
-</html>
+      </div>
+    </nav>
+
+    <!-- Dashboard Content -->
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card p-3">
+          <h5>Overall analysis</h5>
+          <div class="row text-center justify-content-center">
+            <div class="col-auto" style="width: 200px;">
+              <canvas id="chartRecurring" class="chart-sm"></canvas>
+              <p>42%<br><small>recurring</small></p>
+            </div>
+            <div class="col-auto" style="width: 200px;"> 
+              <canvas id="chartAware" class="chart-sm"></canvas>
+              <p>87%<br><small>aware</small></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card p-3 mb-4">
+          <h5>Quick stats</h5>
+          <p>Today: 78</p>
+          <p>This month: 459</p>
+          <p>All time: 54k</p>
+          <p>
